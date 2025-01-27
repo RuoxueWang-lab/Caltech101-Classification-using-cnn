@@ -1,22 +1,19 @@
 # Image Classification for Caltech101 Dataset using CNN (In Progress)
-So far the CNN model has reached a 50% accuracy for this classification task. Trying to fine-tune the hyperparameters or redesigning the layers to reach higher accuracy.
 
-# Current Status
-- The CNN model has achieved 50% accuracy so far. We're facing overfitting problem now.
+## Current Status
+- We're facing overfitting. Since the Caltech101 dataset is small, training a CNN on it from scratch is easy to cause overfitting.
 -  Work is ongoing to improve performance by:
-   1. Fine-tuning hyperparameters
-   2. Redesigning network layers to enhance accuracy.
+   1. Data Augmentation.
 
 # TO-DOs
-1. Implement learning rate schedules and regularization methods.
-2. Experiment with different architectures (e.g., ResNet, VGG, etc.).
-3. Evaluate and compare the performance of pre-trained models.
+1. Experiment with different architectures (e.g., ResNet, VGG, etc.).
+2. Evaluate and compare the performance of pre-trained models.
 
 # Dataset
 Caltech101 Dataset: A widely used dataset containing images categorized into 101 object classes and one background class.
 
 # Results:
-- Current Accuracy: 50%
+- Overfitting
 - Visualizations and training logs will be added in future updates.
 
 # Reference

@@ -2,7 +2,7 @@
 So far the CNN model has reached a 50% accuracy for this classification task. Trying to fine-tune the hyperparameters or redesigning the layers to reach higher accuracy.
 
 # Current Status
-- The CNN model has achieved 50% accuracy so far. We're facing over-fitting problem now.
+- The CNN model has achieved 50% accuracy so far. We're facing overfitting problem now.
 -  Work is ongoing to improve performance by:
    1. Fine-tuning hyperparameters
    2. Redesigning network layers to enhance accuracy.

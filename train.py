@@ -34,6 +34,8 @@ def train_with_validation(model, train_loader, val_loader, criterion, optimizer,
         val_loss /= len(val_loader)
         val_accuracy = 100 * correct / total
         print(f"Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_accuracy:.2f}%")
+        
+        return val_accuracy
 
    
     

@@ -34,6 +34,11 @@ def load_data():
     train_set, test_set = random_split(dataset, [train_size, test_size])
     
     test_dataset = Transform.TransformSubset(test_set, transform_test)
+    
+    # DataLoader(): loading dataset in batches
+    # shuffle=True means the dataset will be randomied before spliiting into batches(suits training set)
+    # shuffle=False ensures the dataset will be loaded in order each time(suits testing and validation set)
+    # num_workers=2: means there're two seperate processes for loading data, which would speed up data loading process.
     test_loader = DataLoader(test_dataset, batch_size=10, shuffle=False, num_workers=2)
     
     return train_set, test_loader
@@ -45,6 +50,9 @@ def CrossValidation(train_set, batch_size):
     # Initialize a 5-fold cross validation
     kfold = KFold(n_splits=5, shuffle=True, random_state=42)
     
+    # range(leangth) represents indices of data points in the train_set
+    # kfold.split(range(length)) slpits the indices of train set into five folds, and it would return a list of tuples where each 
+    # tuple contains the indices for training and the indices for validation.
     for fold, (train_idx, val_idx) in enumerate(kfold.split(range(length))):
         train_subset = Subset(train_set, train_idx)
         val_set = Subset(train_set, val_idx)

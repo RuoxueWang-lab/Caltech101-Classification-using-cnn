@@ -25,13 +25,13 @@ def train_with_validation(model, train_loader, val_loader, criterion, optimizer,
             for images, labels in val_loader:
                 outputs = model(images)
                 loss = criterion(outputs, labels)
-                val_loss += loss.item()
+                val_loss += loss.item() # Convert loss tensor into python scalar(int/float)
                 _, predicted = torch.max(outputs.data, 1)  # Get predicted class
-                total += labels.size(0)
+                total += labels.size(0) # Size of the first dimension of labels tensor(size of a batch)
                 correct += (predicted == labels).sum().item()
         
         # Print validation loss and accuracy
-        val_loss /= len(val_loader)
+        val_loss /= len(val_loader) # Average the loss over the entire validation dataset
         val_accuracy = 100 * correct / total
         print(f"Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_accuracy:.2f}%")
         

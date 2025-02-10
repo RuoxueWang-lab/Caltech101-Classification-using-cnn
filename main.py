@@ -1,13 +1,14 @@
 from network import CNN
 from train import train_with_validation
 from test import test
+from torchvision import models
 import data_loader
 import torch.optim as optim
 import torch.nn as nn
 import numpy as np
+import torch
 
-def main(hyperparameters_grid):
-    model = CNN()
+def main(hyperparameters_grid, model):
     train_set, test_loader = data_loader.load_data()
     
     best_accuracy = 0
@@ -43,12 +44,28 @@ def main(hyperparameters_grid):
     # test(model, test_loader)
 
 if __name__ == "__main__":
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    
+    # Self-designed CNN
+    # model = CNN()
+    
+    # ResNet
+    model = models.resnet50(pretrained=True)
+    
+    # There's only one fully connected layer at the end of ResNet netowrk
+    # We extract the number of input features of the last fully connected layer
+    num_features = model.fc.in_features
+    # Then we change the output features of this layer into 102, which matches the number of classes Caltech101 dataset
+    model.fc = nn.Linear(num_features, 102)
+    
+    model = model.to(device)
+    
     hyperparameters_grid = {
     'learning_rate': [0.001, 0.01],
     'batch_size': [32, 64],
     'epochs': [5, 10]}
     
-    main(hyperparameters_grid)
+    main(hyperparameters_grid, model)
              
     
     
